@@ -12,11 +12,17 @@ pip install flask-bootstrap
 pip install flask-login
 ```
 
+数据库uri定义如下：
+`'mysql+pymysql://root:180052@localhost:3306/xsy'`
+
+
 ## 运行
 
 ```
 python HelloFlask.py
 ```
+
+数据初始化，请访问`/createDB`
 
 ## 附加
 
