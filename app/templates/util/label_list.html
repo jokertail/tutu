@@ -1,0 +1,17 @@
+<table class="table table-hover">
+  <caption>标注列表</caption>
+  <thead>
+    <tr>
+      <th>标注</th>
+      <th>时间</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for label in labels %}
+        <tr>
+            <td>{{label.label}}</td>
+            <td>{{label.time}}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>

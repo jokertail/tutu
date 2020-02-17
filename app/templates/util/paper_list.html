@@ -1,0 +1,19 @@
+<table class="table table-hover">
+  <caption>论文列表</caption>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>年份</th>
+      <th>会议</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for paper in papers %}
+        <tr>
+            <td>{{paper.name}}</td>
+            <td>{{paper.year}}</td>
+            <td>{{paper.conference}}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>

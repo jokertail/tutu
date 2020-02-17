@@ -1,0 +1,24 @@
+<div>
+    {% with messages = get_flashed_messages(category_filter=['success']) %}
+        {% if messages %}
+            <ul class="flash">
+                {% for message in messages %}
+                    <div class="alert alert-success" style="text-align: center">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        <strong>{{ message }}</strong></div>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    {% with messages = get_flashed_messages(category_filter=['error']) %}
+        {% if messages %}
+            <ul class="flash">
+                {% for message in messages %}
+                    <div class="alert alert-danger" style="text-align: center">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        <strong>{{ message }}</strong></div>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</div>
