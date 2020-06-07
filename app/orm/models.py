@@ -30,7 +30,6 @@ class User(db.Model, UserMixin):
         return self.uid
 
 
-
 class Role(db.Model):
     __tablename__ = 'role'
 

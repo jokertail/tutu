@@ -1,10 +1,32 @@
 from uuid import uuid1
 
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session, url_for
+from werkzeug.utils import redirect
 
 from app.orm.models import User
 
 test_bp = Blueprint('test_bp', __name__)
+
+
+@test_bp.route('/test/session1')
+def test_session():
+    session['test'] = request.args.get('aaa')
+    return "1 finished!"
+
+
+@test_bp.route('/test/session2')
+def test_session2():
+    return session['test']
+
+
+@test_bp.route('/test/url_for_1')
+def test_url_for_1():
+    return request.args.get("hehe")
+
+
+@test_bp.route('/test/url_for_2')
+def test_url_for_2():
+    return redirect(url_for("test_bp.test_url_for_1", hehe="ssssssss"))
 
 
 @test_bp.route('/test/testList')
@@ -36,3 +58,9 @@ def register():
         print(type(user.uid))
         print(username, password)
         return "hahahha"
+
+
+
+@test_bp.route('/test/labels')
+def test_labels():
+    return render_template('labels.html')

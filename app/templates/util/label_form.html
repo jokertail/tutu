@@ -1,0 +1,22 @@
+{% macro label_form(label, form_url) %}
+<form class="form-horizontal" action="{{form_url}}" method="post" id="label_form">
+    <div class="container">
+        <div class="row" style="padding: 20px 0">
+            <h3>标注详情</h3>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-lg-3" for="info">标注信息</label>
+            <div class="col-lg-6 col-md-6">
+                <textarea class="form-control" name="info" rows="6" form="label_form">{{label.info}}</textarea>
+            </div>
+        </div>
+        <input type="text" name="lid" id="lid" value="{{label.pid}}" style="display: none;">
+        <div style="text-align: center;">
+            <button type="submit" id="submit" class="btn btn-success">保存提交</button>
+            <a class="btn btn-default" href="/my_labels?pid={{label.pid}}">
+                <i class="fa fa-plus"></i> 返回
+            </a>
+        </div>
+    </div>
+</form>
+{% endmacro %}

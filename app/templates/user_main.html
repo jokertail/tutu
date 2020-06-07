@@ -14,26 +14,36 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">徐诗怡小可爱的论文标注系统</a>
+                <a class="navbar-brand" href="/">徐诗怡小可爱的论文标注系统</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">我的论文</a></li>
-                    <li><a href="#">我的标注</a></li>
+                    <li><a href="/user_main">论文列表</a></li>
+                    <li><a href="/my_papers">我的论文</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/user/login">登录</a></li>
+                            <li><a href="/">主页</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="/user/register">注册</a></li>
+                            <li><a href="/user/logout">注销</a></li>
                         </ul>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
+    </div>
 </nav>
 {% endblock %}
+
+
+{% block mycontent %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        {% include 'util/paper_list.html' %}
+    </div>
+</div>
+{% endblock mycontent %}

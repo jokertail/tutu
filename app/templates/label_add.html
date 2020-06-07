@@ -1,0 +1,6 @@
+{% extends 'user_main.html' %}
+{% from 'util/label_form.html' import label_form %}
+
+{% block mycontent %}
+{{label_form(label, "/label_add")}}
+{% endblock mycontent %}

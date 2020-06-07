@@ -1,0 +1,6 @@
+{% extends 'user_main.html' %}
+{% from 'util/paper_form.html' import paper_form %}
+
+{% block mycontent %}
+{{paper_form(paper, conference_list, "/paper_edit")}}
+{% endblock mycontent %}

@@ -1,0 +1,12 @@
+{% extends 'user_main.html' %}
+
+{% block mycontent %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <a class="btn btn-primary" href="/paper_add">
+            <i class="fa fa-plus"></i> 添加论文
+        </a>
+        {% include 'util/paper_list.html' %}
+    </div>
+</div>
+{% endblock mycontent %}

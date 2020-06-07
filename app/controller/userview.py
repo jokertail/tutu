@@ -2,8 +2,9 @@ from urllib.parse import urlparse, urljoin
 from uuid import uuid1
 
 from flask import Blueprint, request, render_template, flash, url_for, redirect, abort
-from flask_login import login_user
+from flask_login import login_user, logout_user
 
+from app.orm import db
 from app.orm.models import User
 
 user_bp = Blueprint('user_bp', __name__)
@@ -43,6 +44,12 @@ def login():
         return redirect(next_url or url_for('bp.index'))
 
 
+@user_bp.route('/user/logout')
+def log_out():
+    logout_user()
+    return redirect(url_for('user_bp.login'))
+
+
 @user_bp.route('/user/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
@@ -53,17 +60,19 @@ def register():
         password = request.form.get('password')
         email = request.form.get('email')
         telephone = request.form.get('telephone')
+        name = request.form.get('name')
 
         user = User()
+        user.name = name
         user.username = username
         user.password = password
         user.email = email
         user.telephone = telephone
         user.uid = uuid1().__str__()
 
-        # db.session.add(user)
-        # db.session.commit()
+        db.session.add(user)
+        db.session.commit()
 
-        flash("photo upload error", "error")
+        flash("注册成功", "success")
 
         return redirect(url_for('bp.index'))

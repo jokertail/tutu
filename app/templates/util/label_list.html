@@ -1,17 +1,36 @@
-<table class="table table-hover">
-  <caption>标注列表</caption>
+<table class="table table-hover table-striped" style="word-break:break-all; word-wrap:break-all;table-layout:fixed">
   <thead>
     <tr>
-      <th>标注</th>
-      <th>时间</th>
+      <th>标注者</th>
+      <th>标注时间</th>
+      <th>标注信息</th>
+      <th>操作</th>
     </tr>
   </thead>
   <tbody>
     {% for label in labels %}
-        <tr>
-            <td>{{label.label}}</td>
-            <td>{{label.time}}</td>
-        </tr>
+    <tr>
+      <td>{{label.name}}</td>
+      <td>{{label.time}}</td>
+      <td>{{label.info}}</td>
+      <td rowspan=$row_host1 style="vertical-align: middle;">
+        <div class="btn-group-sm hidden-xs" id="toolbar" role="group">
+          {% if label.uid == current_user.uid %}
+            <a class="btn btn-success" href="/label_edit?lid={{label.lid}}">
+              <i class="fa fa-plus"></i> 编辑
+          </a>
+          {% else %}
+          <a class="btn btn-success disabled">
+              <i class="fa fa-plus"></i> 编辑
+          </a>
+          {% endif %}
+          <a class="btn btn-danger btn-del btn-del disabled" onclick="$.operate.removeAll()"
+             shiro:hasPermission="module:informations:remove">
+              <i class="fa fa-remove"></i> 删除
+          </a>
+      </div>
+      </td>
+    </tr>
     {% endfor %}
   </tbody>
 </table>

@@ -1,19 +1,43 @@
-<table class="table table-hover">
-  <caption>论文列表</caption>
+<table class="table table-hover table-striped" style="word-break:break-all; word-wrap:break-all;table-layout:fixed">
   <thead>
     <tr>
       <th>名称</th>
       <th>年份</th>
       <th>会议</th>
+      <th>操作</th>
     </tr>
   </thead>
   <tbody>
     {% for paper in papers %}
-        <tr>
-            <td>{{paper.name}}</td>
-            <td>{{paper.year}}</td>
-            <td>{{paper.conference}}</td>
-        </tr>
+    <tr>
+      <td>{{paper.name}}</td>
+      <td>{{paper.year}}</td>
+      <td>{{paper.conference}}</td>
+      <td rowspan=$row_host1 style="vertical-align: middle;">
+        <div class="btn-group-sm hidden-xs" id="toolbar" role="group">
+          {% if paper.uid == current_user.uid %}
+            <a class="btn btn-success" href="/paper_edit?pid={{paper.pid}}">
+              <i class="fa fa-plus"></i> 编辑
+          </a>
+          {% else %}
+          <a class="btn btn-success disabled">
+              <i class="fa fa-plus"></i> 编辑
+          </a>
+          {% endif %}
+          <a class="btn btn-primary btn-edit" href="/label_list?pid={{paper.pid}}">
+              <i class="fa fa-edit"></i> 标注
+          </a>
+          <a class="btn btn-danger btn-del btn-del disabled" onclick="$.operate.removeAll()"
+             shiro:hasPermission="module:informations:remove">
+              <i class="fa fa-remove"></i> 删除
+          </a>
+          <a class="btn btn-primary btn-edit" href="/my_labels?pid={{paper.pid}}">
+              <i class="fa fa-edit"></i> 我的标注
+          </a>
+      </div>
+      </td>
+    </tr>
     {% endfor %}
   </tbody>
 </table>
+

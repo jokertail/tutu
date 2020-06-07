@@ -1,0 +1,51 @@
+{% macro paper_form(paper, conference_list, form_url) %}
+<form class="form-horizontal" action="{{form_url}}" method="post" id="paper_form">
+    <div class="container">
+        <div class="row" style="padding: 20px 0">
+            <h3>论文详情</h3>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-lg-3" for="title">论文标题</label>
+            <div class="col-lg-6 col-md-6">
+                <textarea class="form-control" name="title" rows="2" form="paper_form">{{paper.title}}</textarea>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-lg-3">摘要</label>
+            <div class="col-lg-6 col-md-6">
+                <textarea name="summary" class="form-control" rows="5" form="paper_form">{{paper.summary}}</textarea>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-lg-3">年份</label>
+            <div class="col-lg-6 col-md-6">
+                <input type="number" name="year" id="year" class="form-control" value="{{paper.year}}">
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-lg-3">会议名称</label>
+            <div class="col-lg-6 col-md-6">
+                <select class="form-control" name="conference">
+                    <option value="{{paper.conference}}" style="display: none;">{{paper.conference}}</option>
+                    {% for conference_name in conference_list %}
+                        <option value="{{conference_name}}">{{conference_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-lg-3" for="name">网络链接</label>
+            <div class="col-lg-6 col-md-6">
+                <textarea class="form-control" name="url" rows="1" form="paper_form">{{paper.url}}</textarea>
+            </div>
+        </div>
+        <input type="text" name="pid" id="pid" value="{{paper.pid}}" style="display: none;">
+        <div style="text-align: center;">
+            <button type="submit" id="submit" class="btn btn-success">保存提交</button>
+            <a class="btn btn-default" href="/my_papers">
+                <i class="fa fa-plus"></i> 返回
+            </a>
+        </div>
+    </div>
+</form>
+{% endmacro %}
